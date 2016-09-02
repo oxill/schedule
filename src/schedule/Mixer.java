@@ -22,8 +22,7 @@ public class Mixer {
         for (Teacher teacher :
                 teachers) {
             System.out.println(teacher.getFullName());
-            teacher.showLessons();
-            teacher.showLoad();
+            teacher.showLessonsAndLoad();
         }
     }
 
@@ -31,8 +30,7 @@ public class Mixer {
         for (Class aClass :
                 classes) {
             System.out.println(aClass.getFullName());
-            aClass.showLessons();
-            aClass.showLoad();
+            aClass.showLessonsAndLoad();
         }
     }
 
