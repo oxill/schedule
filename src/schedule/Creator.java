@@ -1,5 +1,6 @@
 package schedule;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,15 +12,34 @@ import java.util.Map;
  */
 class Creator {
     private String fullName;
-    private EnumMap<Lessons, Integer> enumMap;
+    private EnumMap<Lessons, Integer> lessonAndLoad; // <урок, кол-во часов данного урока>
+    private int mainLoad;
 
     Creator(String fullName) {
         this.fullName = fullName;
-        this.enumMap = new EnumMap<>(Lessons.class);
+        this.lessonAndLoad = new EnumMap<>(Lessons.class);
+        this.mainLoad = 0;
     }
 
     String getFullName() {
         return fullName;
+    }
+
+    public int getMainLoad() {
+        return mainLoad;
+    }   
+
+    public EnumMap<Lessons, Integer> getLessonAndLoad() {
+        return lessonAndLoad;
+    }    
+    
+    protected void reduceMainLoad() {
+        this.mainLoad--;
+    }
+    
+    protected void reduceLoadForLesson(Lessons lesson) {
+        int load = this.lessonAndLoad.get(lesson) - 1;
+        this.lessonAndLoad.put(lesson, load);
     }
 
     void addLesson() throws IOException {
@@ -39,19 +59,34 @@ class Creator {
                 if (lesson.ordinal() == numberOfLesson) {
                     System.out.println("Enter load");
                     int load = Integer.parseInt(reader.readLine());
-                    enumMap.put(lesson, load);
+                    lessonAndLoad.put(lesson, load);
+                    this.mainLoad += load;
                 }
             }
 
             numberOfLesson = Integer.parseInt(reader.readLine());
         }
     }
+    
+    void addLessonHardCode() { 
+        int load = 0;
+        for (Lessons l : Lessons.values()) {
+            this.lessonAndLoad.put(l, ++load);
+            this.mainLoad += load;
+        }
+    } 
+    
+    void addLessonHardCodeTeacher(Lessons l, int load) {
+        this.lessonAndLoad.put(l, load);
+        this.mainLoad += load;
+    }
 
     void showLessonsAndLoad() {
         System.out.println("Lessons and load");
 
-        for (Map.Entry<Lessons, Integer> entry : enumMap.entrySet()) {
+        for (Map.Entry<Lessons, Integer> entry : lessonAndLoad.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
-    }
+        System.out.println("Main load " + this.mainLoad);
+    }        
 }
