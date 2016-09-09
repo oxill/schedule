@@ -66,20 +66,17 @@ class Creator {
 
             numberOfLesson = Integer.parseInt(reader.readLine());
         }
-    }
+    }    
     
-    void addLessonHardCode() { 
-        int load = 0;
-        for (Lessons l : Lessons.values()) {
-            this.lessonAndLoad.put(l, ++load);
-            this.mainLoad += load;
-        }
-    } 
-    
-    void addLessonHardCodeTeacher(Lessons l, int load) {
+    void addLessonHardCode(Lessons l, int load) {
         this.lessonAndLoad.put(l, load);
         this.mainLoad += load;
     }
+    
+    /*void addLessonHardCode() {
+        //nothing
+    }*/
+    
 
     void showLessonsAndLoad() {
         System.out.println("Lessons and load");

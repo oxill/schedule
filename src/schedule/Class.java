@@ -15,10 +15,14 @@ class Class extends Creator {
     Class(String fullName) {
         super(fullName);
         weekAndList = new EnumMap<>(Week.class);
-        teachers = new ArrayList<>();
+        /*teachers = new ArrayList<>();
         for (Week w : Week.values()) {
             weekAndList.put(w, teachers);
+        }*/
+        for (Week w : Week.values()) {
+            weekAndList.put(w, new ArrayList<Teacher>());
         }
+        
     }
     
     public EnumMap<Week, List<Teacher>> getWeekAndList() {
@@ -26,17 +30,20 @@ class Class extends Creator {
     }
 
     public void addTeacher(Week week, Teacher t) {
-        teachers.add(t);
-        weekAndList.put(week, teachers);        
+        List<Teacher> list = weekAndList.get(week);
+        list.add(t);
+        //teachers.add(t);
+        weekAndList.put(week, list);        
     }
     
     void showWeekAndList() {
-        System.out.print("Week and list ");
+        System.out.println("Week and list");
         for (Map.Entry<Week, List<Teacher>> entry : weekAndList.entrySet()) {
-            System.out.println(entry.getKey());
+            System.out.print(entry.getKey() + " ");
             for (Teacher teacher : entry.getValue()) {
-                System.out.println(teacher.getFullName());
+                System.out.print(teacher.getFullName() + " ");
             }
+            System.out.println("");
         }
     }
 }

@@ -7,5 +7,6 @@ package schedule;
  */
 enum Lessons {
     RUS,
-    MATH,    
+    MATH,
+    BIO
 }

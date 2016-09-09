@@ -25,7 +25,7 @@ public class Mixer {
         classes.add(aClass);
     }
 
-    public static void showTeachersLL() {
+    public static void showTeachersLessonsLoad() {
         for (Teacher teacher :
                 teachers) {
             System.out.println(teacher.getFullName());
@@ -33,27 +33,29 @@ public class Mixer {
         }
     }
 
-    public static void showClassesLL() {
+    public static void showClassesLessonsLoad() {
         for (Class aClass :
                 classes) {
-            System.out.println(aClass.getFullName());
+            System.out.print(aClass.getFullName() + " ");
             aClass.showLessonsAndLoad();
         }
     }
     
-    public static void showTeachersWL() {
+    public static void showTeachersWeekLoad() {
         for (Teacher teacher :
                 teachers) {
-            System.out.println(teacher.getFullName());
+            System.out.print(teacher.getFullName() + " ");
             teacher.showWeekAndList();
+            System.out.println("");
         }
     }
 
-    public static void showClassesWL() {
+    public static void showClassesWeekLoad() {
         for (Class aClass :
                 classes) {
-            System.out.println(aClass.getFullName());
+            System.out.print(aClass.getFullName() + " ");
             aClass.showWeekAndList();
+            System.out.println("");
         }
     }
     
@@ -90,25 +92,38 @@ public class Mixer {
     }
     
     public static void scheduleForEveryDay() {        
+        int i = 1;
         while (hasMainLoad()) {            
+            System.out.println("START WEEK " + i);
+            i++;
             for (Week w : Week.values()) {                
                 for (Class c : classes) { 
-                    System.out.println(c.getMainLoad());
+                    //System.out.println(c.getFullName() + " mainLoad " + c.getMainLoad());
                     EnumMap<Lessons, Integer> classlessonAndLoad = c.getLessonAndLoad();
                     for (Map.Entry<Lessons, Integer> classEntry : classlessonAndLoad.entrySet()) {
                         Lessons classLesson = classEntry.getKey();
                         int classLoad = classEntry.getValue();
                         if (classLoad > 0) {
-                            for (Teacher teacher : teachers) {                                  
+                            for (Teacher teacher : teachers) {  
+                                System.out.println(teacher.getFullName() + " mainLoad " + teacher.getMainLoad());
                                 EnumMap<Lessons, Integer> teacherlessonAndLoad = teacher.getLessonAndLoad();
                                 for (Map.Entry<Lessons, Integer> teacherEntry : teacherlessonAndLoad.entrySet()) {
                                     Lessons teacherLesson = teacherEntry.getKey();
                                     int teacherLoad = teacherEntry.getValue();
                                     if (teacherLoad > 0) {
                                         if (teacherLesson.equals(classLesson)) { // если учитель ведет такой урок
-                                            if (teacher.getWeekAndList().get(w).size() == c.getWeekAndList().get(w).size()) {// если у учителя в этот день есть свободный урок, то добавить его к учителю и классу
+                                            int teacherTodaySize = teacher.getWeekAndList().get(w).size();
+                                            int classTodaySize = c.getWeekAndList().get(w).size();
+                                            if (teacherTodaySize <= classTodaySize) {// если у учителя в этот день есть свободный урок, то добавить его к учителю и классу                                                
+                                                
                                                 c.addTeacher(w, teacher);
+                                                System.out.println("class added " + w + " " + teacher.getFullName());
+                                                while(teacherTodaySize < classTodaySize) {
+                                                    teacher.addClass(w, new Class(null));
+                                                    teacherTodaySize++;
+                                                }
                                                 teacher.addClass(w, c);                                            
+                                                System.out.println("teacher added " + w + " " + c.getFullName());
                                                 c.reduceMainLoad();
                                                 teacher.reduceMainLoad();                                            
                                                 c.reduceLoadForLesson(classLesson);
