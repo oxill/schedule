@@ -8,5 +8,6 @@ package schedule;
 enum Lessons {
     RUS,
     MATH,
-    BIO
+    BIO,
+    LIT
 }

@@ -49,7 +49,7 @@ class Teacher extends Creator {
             System.out.print(entry.getKey() + " ");
             //System.out.println("size teacher" + entry.getValue().size());
             for (Class c : entry.getValue()) {
-                System.out.print(c.getFullName() + " ");
+                System.out.print(c.getFullNameClass() + " ");
             }
             System.out.println("");
         }

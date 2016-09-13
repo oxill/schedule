@@ -28,7 +28,7 @@ public class Mixer {
     public static void showTeachersLessonsLoad() {
         for (Teacher teacher :
                 teachers) {
-            System.out.println(teacher.getFullName());
+            System.out.println(teacher.getFullNameTeacher());
             teacher.showLessonsAndLoad();
         }
     }
@@ -36,7 +36,7 @@ public class Mixer {
     public static void showClassesLessonsLoad() {
         for (Class aClass :
                 classes) {
-            System.out.print(aClass.getFullName() + " ");
+            System.out.print(aClass.getFullNameClass() + " ");
             aClass.showLessonsAndLoad();
         }
     }
@@ -44,7 +44,7 @@ public class Mixer {
     public static void showTeachersWeekLoad() {
         for (Teacher teacher :
                 teachers) {
-            System.out.print(teacher.getFullName() + " ");
+            System.out.print(teacher.getFullNameTeacher() + " ");
             teacher.showWeekAndList();
             System.out.println("");
         }
@@ -53,7 +53,7 @@ public class Mixer {
     public static void showClassesWeekLoad() {
         for (Class aClass :
                 classes) {
-            System.out.print(aClass.getFullName() + " ");
+            System.out.print(aClass.getFullNameClass() + " ");
             aClass.showWeekAndList();
             System.out.println("");
         }
@@ -94,18 +94,21 @@ public class Mixer {
     public static void scheduleForEveryDay() {        
         int i = 1;
         while (hasMainLoad()) {            
-            System.out.println("START WEEK " + i);
+            System.out.println("Main loop count " + i);
             i++;
-            for (Week w : Week.values()) {                
+            for (Week w : Week.values()) {  
+                label:
                 for (Class c : classes) { 
-                    //System.out.println(c.getFullName() + " mainLoad " + c.getMainLoad());
+                    System.out.println(c.getFullNameClass() + " mainLoad " + c.getMainLoad());
                     EnumMap<Lessons, Integer> classlessonAndLoad = c.getLessonAndLoad();
+                    
                     for (Map.Entry<Lessons, Integer> classEntry : classlessonAndLoad.entrySet()) {
                         Lessons classLesson = classEntry.getKey();
                         int classLoad = classEntry.getValue();
                         if (classLoad > 0) {
                             for (Teacher teacher : teachers) {  
-                                System.out.println(teacher.getFullName() + " mainLoad " + teacher.getMainLoad());
+// пока делаю выход из цикла по учителям, предполагая, что на один предмет подходит один учитель, если надо выбирать между ними, но надо изменить этот цикл
+                                System.out.println(teacher.getFullNameTeacher() + " mainLoad " + teacher.getMainLoad());
                                 EnumMap<Lessons, Integer> teacherlessonAndLoad = teacher.getLessonAndLoad();
                                 for (Map.Entry<Lessons, Integer> teacherEntry : teacherlessonAndLoad.entrySet()) {
                                     Lessons teacherLesson = teacherEntry.getKey();
@@ -114,31 +117,30 @@ public class Mixer {
                                         if (teacherLesson.equals(classLesson)) { // если учитель ведет такой урок
                                             int teacherTodaySize = teacher.getWeekAndList().get(w).size();
                                             int classTodaySize = c.getWeekAndList().get(w).size();
-                                            if (teacherTodaySize <= classTodaySize) {// если у учителя в этот день есть свободный урок, то добавить его к учителю и классу                                                
-                                                
-                                                c.addTeacher(w, teacher);
-                                                System.out.println("class added " + w + " " + teacher.getFullName());
+                                            if (teacherTodaySize <= classTodaySize) {// если у учителя в этот день есть свободный урок, то добавить его к учителю и классу                                                                                                
+                                                c.addTeacher(w, classLesson);
+                                                System.out.println("class " + c.getFullNameClass() + w + " " + teacher.getFullNameTeacher() + " " + teacherLesson);
                                                 while(teacherTodaySize < classTodaySize) {
-                                                    teacher.addClass(w, new Class(null));
+                                                    teacher.addClass(w, new Class(0, ""));
                                                     teacherTodaySize++;
                                                 }
                                                 teacher.addClass(w, c);                                            
-                                                System.out.println("teacher added " + w + " " + c.getFullName());
+                                                System.out.println("teacher added " + w + " " + c.getFullNameClass());
                                                 c.reduceMainLoad();
                                                 teacher.reduceMainLoad();                                            
                                                 c.reduceLoadForLesson(classLesson);
                                                 teacher.reduceLoadForLesson(teacherLesson);
-                                                //break; добавить метки для лучшего выхода и меньшего количества итераций
+                                                continue label;
                                             }   
                                         }
-                                    }
+                                    }                                    
                                 }
                             }
                         }
                     }                
                 }
             }
-        }       
+        }        
     }
 }
 

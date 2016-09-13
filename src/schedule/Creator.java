@@ -14,15 +14,28 @@ class Creator {
     private String fullName;
     private EnumMap<Lessons, Integer> lessonAndLoad; // <урок, кол-во часов данного урока>
     private int mainLoad;
+    private int classNumber;
+    private String classLetter;
 
     Creator(String fullName) {
         this.fullName = fullName;
         this.lessonAndLoad = new EnumMap<>(Lessons.class);
         this.mainLoad = 0;
-    }
+    }   
 
-    String getFullName() {
+    public Creator(int classNumber, String classLetter) {
+        this.classNumber = classNumber;
+        this.classLetter = classLetter;
+        this.lessonAndLoad = new EnumMap<>(Lessons.class);
+        this.mainLoad = 0;
+    }        
+
+    String getFullNameTeacher() {
         return fullName;
+    }
+    
+    String getFullNameClass() {
+        return classNumber + classLetter;
     }
 
     public int getMainLoad() {
