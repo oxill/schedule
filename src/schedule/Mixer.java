@@ -96,19 +96,20 @@ public class Mixer {
         while (hasMainLoad()) {            
             System.out.println("Main loop count " + i);
             i++;
-            for (Week w : Week.values()) {  
+            for (Week w : Week.values()) {
+                System.out.println(w.name());
                 label:
                 for (Class c : classes) { 
-                    System.out.println(c.getFullNameClass() + " mainLoad " + c.getMainLoad());
+                    //System.out.println(c.getFullNameClass() + " mainLoad " + c.getMainLoad());
                     EnumMap<Lessons, Integer> classlessonAndLoad = c.getLessonAndLoad();
                     
                     for (Map.Entry<Lessons, Integer> classEntry : classlessonAndLoad.entrySet()) {
                         Lessons classLesson = classEntry.getKey();
                         int classLoad = classEntry.getValue();
                         if (classLoad > 0) {
-                            for (Teacher teacher : teachers) {  
+                            for (Teacher teacher : teachers) {
 // пока делаю выход из цикла по учителям, предполагая, что на один предмет подходит один учитель, если надо выбирать между ними, но надо изменить этот цикл
-                                System.out.println(teacher.getFullNameTeacher() + " mainLoad " + teacher.getMainLoad());
+                                //System.out.println(teacher.getFullNameTeacher() + " mainLoad " + teacher.getMainLoad());
                                 EnumMap<Lessons, Integer> teacherlessonAndLoad = teacher.getLessonAndLoad();
                                 for (Map.Entry<Lessons, Integer> teacherEntry : teacherlessonAndLoad.entrySet()) {
                                     Lessons teacherLesson = teacherEntry.getKey();
@@ -117,6 +118,10 @@ public class Mixer {
                                         if (teacherLesson.equals(classLesson)) { // если учитель ведет такой урок
                                             int teacherTodaySize = teacher.getWeekAndList().get(w).size();
                                             int classTodaySize = c.getWeekAndList().get(w).size();
+                                            //System.out.println(w.name() + c.getFullNameClass() + classTodaySize);
+                                            //System.out.println(w.name() + teacher.getFullNameTeacher() + teacherTodaySize);
+                                            // чтобы не добавлять учителю пустые уроки просто так
+                                            // надо проверить, что больше ни у одного класса нет свободного урока как у учителя
                                             if (teacherTodaySize <= classTodaySize) {// если у учителя в этот день есть свободный урок, то добавить его к учителю и классу                                                                                                
                                                 c.addTeacher(w, classLesson);
                                                 System.out.println("class " + c.getFullNameClass() + w + " " + teacher.getFullNameTeacher() + " " + teacherLesson);
@@ -137,7 +142,8 @@ public class Mixer {
                                 }
                             }
                         }
-                    }                
+                    }
+                    c.addTeacher(w, Lessons.VOID);
                 }
             }
         }        

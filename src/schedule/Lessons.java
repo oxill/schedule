@@ -9,5 +9,6 @@ enum Lessons {
     RUS,
     MATH,
     BIO,
-    LIT
+    LIT,
+    VOID
 }
