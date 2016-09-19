@@ -30,6 +30,7 @@ public class Mixer {
                 teachers) {
             System.out.println(teacher.getFullNameTeacher());
             teacher.showLessonsAndLoad();
+            //teacher.showInfo();
         }
     }
 
@@ -91,17 +92,18 @@ public class Mixer {
         }
     }
     
-    public static void scheduleForEveryDay() {        
+    public static void createSchedule() { // цикл для составления расписания по выбору свободного учителя из всех доступных
         int i = 1;
-        while (hasMainLoad()) {            
+        while (hasMainLoad()) {
+            
             System.out.println("Main loop count " + i);
             i++;
-            for (Week w : Week.values()) {
+            for (DayOfWeek w : DayOfWeek.values()) {
                 System.out.println(w.name());
                 label:
                 for (Class c : classes) { 
                     //System.out.println(c.getFullNameClass() + " mainLoad " + c.getMainLoad());
-                    EnumMap<Lessons, Integer> classlessonAndLoad = c.getLessonAndLoad();
+                    EnumMap<Lessons, Integer> classlessonAndLoad = c.getMapLessonAndLoad();
                     
                     for (Map.Entry<Lessons, Integer> classEntry : classlessonAndLoad.entrySet()) {
                         Lessons classLesson = classEntry.getKey();
@@ -110,12 +112,17 @@ public class Mixer {
                             for (Teacher teacher : teachers) {
 // пока делаю выход из цикла по учителям, предполагая, что на один предмет подходит один учитель, если надо выбирать между ними, но надо изменить этот цикл
                                 //System.out.println(teacher.getFullNameTeacher() + " mainLoad " + teacher.getMainLoad());
+                                if (teacher.isFreeDay(w)) {
+                                    continue;
+                                }
                                 EnumMap<Lessons, Integer> teacherlessonAndLoad = teacher.getLessonAndLoad();
                                 for (Map.Entry<Lessons, Integer> teacherEntry : teacherlessonAndLoad.entrySet()) {
                                     Lessons teacherLesson = teacherEntry.getKey();
                                     int teacherLoad = teacherEntry.getValue();
                                     if (teacherLoad > 0) {
-                                        if (teacherLesson.equals(classLesson)) { // если учитель ведет такой урок
+                                        if (teacher.hasClass(classLesson, c)) {
+                                            //System.out.println("TEACHER " + teacher.getFullNameTeacher() + " HAS A CLASS " + c.getFullNameClass());                                       
+                                        //if (teacherLesson.equals(classLesson)) { // если учитель ведет такой урок
                                             int teacherTodaySize = teacher.getWeekAndList().get(w).size();
                                             int classTodaySize = c.getWeekAndList().get(w).size();
                                             //System.out.println(w.name() + c.getFullNameClass() + classTodaySize);
@@ -126,10 +133,10 @@ public class Mixer {
                                                 c.addTeacher(w, classLesson);
                                                 System.out.println("class " + c.getFullNameClass() + w + " " + teacher.getFullNameTeacher() + " " + teacherLesson);
                                                 while(teacherTodaySize < classTodaySize) {
-                                                    teacher.addClass(w, new Class(0, ""));
+                                                    teacher.addClassToday(w, new Class(0, "", 0));
                                                     teacherTodaySize++;
-                                                }
-                                                teacher.addClass(w, c);                                            
+                                                }                                                
+                                                teacher.addClassToday(w, c);                                            
                                                 System.out.println("teacher added " + w + " " + c.getFullNameClass());
                                                 c.reduceMainLoad();
                                                 teacher.reduceMainLoad();                                            
@@ -147,6 +154,9 @@ public class Mixer {
                 }
             }
         }        
+    }
+    
+    public static void scheduleForEveryDay() {
     }
 }
 

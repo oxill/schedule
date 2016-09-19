@@ -1,5 +1,8 @@
 package schedule;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -8,26 +11,45 @@ import java.util.Map;
 /**
  * Created by Ilya on 01.09.2016.
  */
-class Class extends Creator {
-    private EnumMap<Week, List<Lessons>> weekAndList;
-    private List<Teacher> teachers;    
-
-    public Class(int classNumber, String classLetter) {
-        super(classNumber, classLetter);
-        weekAndList = new EnumMap<>(Week.class);
+class Class {
+    private EnumMap<DayOfWeek, List<Lessons>> weekAndList;            
+    private EnumMap<Lessons, Integer> lessonAndLoad; // <урок, кол-во часов данного урока>
+    private int mainLoad;
+    private int classNumber;
+    private String classLetter;
+    private int people;
+   
+    
+    Class (int classNumber, String classLetter, int people) {
+        this.classNumber = classNumber;
+        this.classLetter = classLetter;
+        this.people = people;
+        this.lessonAndLoad = new EnumMap<>(Lessons.class);
+        this.mainLoad = 0;
+        weekAndList = new EnumMap<>(DayOfWeek.class);
         
-        for (Week w : Week.values()) {
+        for (DayOfWeek w : DayOfWeek.values()) {
             weekAndList.put(w, new ArrayList<Lessons>());
         }
     }
     
+    public boolean isDivideOnPart() {
+        return people > 24;
+    }
     
+    String getFullNameClass() {
+        return classNumber + classLetter;
+    }
+
+    public int getMainLoad() {
+        return mainLoad;
+    }           
     
-    public EnumMap<Week, List<Lessons>> getWeekAndList() {
+    public EnumMap<DayOfWeek, List<Lessons>> getWeekAndList() {
         return weekAndList;
     }
 
-    public void addTeacher(Week week, Lessons lesson) {
+    public void addTeacher(DayOfWeek week, Lessons lesson) {
         List<Lessons> list = weekAndList.get(week);
         list.add(lesson);
         //teachers.add(t);
@@ -36,7 +58,7 @@ class Class extends Creator {
     
     void showWeekAndList() {
         System.out.println("Week and list");
-        for (Map.Entry<Week, List<Lessons>> entry : weekAndList.entrySet()) {
+        for (Map.Entry<DayOfWeek, List<Lessons>> entry : weekAndList.entrySet()) {
             System.out.print(entry.getKey() + " ");
             for (Lessons lesson : entry.getValue()) {
                 System.out.print(lesson.name() + " ");
@@ -44,4 +66,61 @@ class Class extends Creator {
             System.out.println("");
         }
     }
+    
+    public EnumMap<Lessons, Integer> getMapLessonAndLoad() {
+        return lessonAndLoad;
+    }
+    
+    public int getlessonLoad(Lessons l) {
+        return lessonAndLoad.get(l);
+    }
+    
+    protected void reduceMainLoad() {
+        this.mainLoad--;
+    }
+    
+    protected void reduceLoadForLesson(Lessons lesson) {
+        int load = this.lessonAndLoad.get(lesson) - 1;
+        this.lessonAndLoad.put(lesson, load);
+    }
+
+    void addLessonFromKeyboard() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter lesson");
+        for (Lessons lessons :
+                Lessons.values()) {
+            System.out.println(lessons);
+        }
+
+        System.out.println("For exit " + Lessons.values().length);
+        int numberOfLesson = Integer.parseInt(reader.readLine());
+
+        while (numberOfLesson != Lessons.values().length) {
+            for (Lessons lesson:
+                    Lessons.values()) {
+                if (lesson.ordinal() == numberOfLesson) {
+                    System.out.println("Enter load");
+                    int load = Integer.parseInt(reader.readLine());
+                    lessonAndLoad.put(lesson, load);
+                    this.mainLoad += load;
+                }
+            }
+
+            numberOfLesson = Integer.parseInt(reader.readLine());
+        }
+    }    
+    
+    void addLessonHardCode(Lessons l, int load) {
+        this.lessonAndLoad.put(l, load);
+        this.mainLoad += load;
+    }
+    
+    void showLessonsAndLoad() {
+        System.out.println("Lessons and load");
+
+        for (Map.Entry<Lessons, Integer> entry : lessonAndLoad.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+        System.out.println("Main load " + this.mainLoad);
+    }  
 }
