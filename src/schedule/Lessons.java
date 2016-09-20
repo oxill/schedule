@@ -21,5 +21,9 @@ enum Lessons {
     TECHNOLOGY,    
     ART,
     MUSIK,
+    OBZH,
+    ZOZH,
+    SOCIAL,
+    ECOLOGY,
     VOID   
 }

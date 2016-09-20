@@ -19,7 +19,7 @@ class Teacher {
     private int mainLoad;        
     private EnumMap<DayOfWeek, List<Class>> weekAndList;    
     private List<Class> classes;
-    private DayOfWeek day;
+    private DayOfWeek freeDay;
 
     Teacher(String fullName) {
         this.fullName = fullName;
@@ -28,7 +28,7 @@ class Teacher {
         this.mainLoad = 0;        
         this.weekAndList = new EnumMap<>(DayOfWeek.class);
         this.classes = new ArrayList<>();
-        //this.day = null;
+        //this.freeDay = null;
        
         for (DayOfWeek w : DayOfWeek.values()) {
             weekAndList.put(w, new ArrayList<Class>());
@@ -46,6 +46,12 @@ class Teacher {
     public int getMainLoad() {
         return mainLoad;
     }
+
+    public DayOfWeek getFreeDay() {
+        return freeDay;
+    }
+    
+    
 
     public EnumMap<Lessons, List<Class>> getLessonAndClass() {
         return lessonAndClass;
@@ -69,11 +75,14 @@ class Teacher {
     }
     
     public void addFreeDay(DayOfWeek day) {
-        this.day = day;
+        this.freeDay = day;
     }
     
     public boolean isFreeDay(DayOfWeek day) {
-        return this.day.equals(day);
+        if (this.freeDay != null) 
+            return this.freeDay.equals(day);        
+        else
+            return false;
     }
             
 
@@ -148,12 +157,12 @@ class Teacher {
     }
             
     void showLessonsAndLoad() {
-        System.out.println("Lessons and load");
+        System.out.println("нагрузка: ");
 
         for (Map.Entry<Lessons, Integer> entry : lessonAndLoad.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
-        System.out.println("Main load " + this.mainLoad);
+        System.out.println("Общая нагрузка: " + this.mainLoad);
     }
     
     /*void showInfo() {

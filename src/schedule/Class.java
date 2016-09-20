@@ -13,7 +13,7 @@ import java.util.Map;
  */
 class Class {
     private EnumMap<DayOfWeek, List<Lessons>> weekAndList;            
-    private EnumMap<Lessons, Integer> lessonAndLoad; // <урок, кол-во часов данного урока>
+    private EnumMap<Lessons, Double> lessonAndLoad; // <урок, кол-во часов данного урока>
     private int mainLoad;
     private int classNumber;
     private String classLetter;
@@ -41,6 +41,10 @@ class Class {
         return classNumber + classLetter;
     }
 
+    public int getClassNumber() {
+        return classNumber;
+    }        
+
     public int getMainLoad() {
         return mainLoad;
     }           
@@ -67,11 +71,11 @@ class Class {
         }
     }
     
-    public EnumMap<Lessons, Integer> getMapLessonAndLoad() {
+    public EnumMap<Lessons, Double> getMapLessonAndLoad() {
         return lessonAndLoad;
     }
     
-    public int getlessonLoad(Lessons l) {
+    public Double getlessonLoad(Lessons l) {
         return lessonAndLoad.get(l);
     }
     
@@ -80,7 +84,7 @@ class Class {
     }
     
     protected void reduceLoadForLesson(Lessons lesson) {
-        int load = this.lessonAndLoad.get(lesson) - 1;
+        double load = this.lessonAndLoad.get(lesson) - 1;
         this.lessonAndLoad.put(lesson, load);
     }
 
@@ -100,7 +104,7 @@ class Class {
                     Lessons.values()) {
                 if (lesson.ordinal() == numberOfLesson) {
                     System.out.println("Enter load");
-                    int load = Integer.parseInt(reader.readLine());
+                    double load = Integer.parseInt(reader.readLine());
                     lessonAndLoad.put(lesson, load);
                     this.mainLoad += load;
                 }
@@ -110,7 +114,7 @@ class Class {
         }
     }    
     
-    void addLessonHardCode(Lessons l, int load) {
+    void addLessonHardCode(Lessons l, double load) {
         this.lessonAndLoad.put(l, load);
         this.mainLoad += load;
     }
@@ -118,7 +122,7 @@ class Class {
     void showLessonsAndLoad() {
         System.out.println("Lessons and load");
 
-        for (Map.Entry<Lessons, Integer> entry : lessonAndLoad.entrySet()) {
+        for (Map.Entry<Lessons, Double> entry : lessonAndLoad.entrySet()) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
         System.out.println("Main load " + this.mainLoad);
