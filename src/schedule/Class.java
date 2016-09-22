@@ -12,12 +12,14 @@ import java.util.Map;
  * Created by Ilya on 01.09.2016.
  */
 class Class {
-    private EnumMap<DayOfWeek, List<Lessons>> weekAndList;            
+    private EnumMap<DayOfWeek, List<Lessons>> weekAndList; 
+    private EnumMap<DayOfWeek, List<Teacher>> weekTeachers; 
     private EnumMap<Lessons, Double> lessonAndLoad; // <урок, кол-во часов данного урока>
     private int mainLoad;
     private int classNumber;
     private String classLetter;
     private int people;
+    private Lessons [] arrLessons;
    
     
     Class (int classNumber, String classLetter, int people) {
@@ -26,12 +28,24 @@ class Class {
         this.people = people;
         this.lessonAndLoad = new EnumMap<>(Lessons.class);
         this.mainLoad = 0;
-        weekAndList = new EnumMap<>(DayOfWeek.class);
+        this.weekAndList = new EnumMap<>(DayOfWeek.class);
+        this.weekTeachers = new EnumMap<>(DayOfWeek.class);
+        this.arrLessons = new Lessons[6];
         
-        for (DayOfWeek w : DayOfWeek.values()) {
+        /*for (DayOfWeek w : DayOfWeek.values()) {
             weekAndList.put(w, new ArrayList<Lessons>());
-        }
+        }*/
     }
+    
+    public void fillArrayLessons(Lessons lesson) {
+        
+    }
+    
+    /*public int getEmptyPosition() {
+        if (arrLessons.length != 0) {
+            
+        }
+    }*/
     
     public boolean isDivideOnPart() {
         return people > 24;
@@ -53,11 +67,28 @@ class Class {
         return weekAndList;
     }
 
-    public void addTeacher(DayOfWeek week, Lessons lesson) {
-        List<Lessons> list = weekAndList.get(week);
-        list.add(lesson);
-        //teachers.add(t);
-        weekAndList.put(week, list);        
+    public void addLessonToday(DayOfWeek day, Lessons lesson) {        
+        List<Lessons> list = weekAndList.get(day);
+        if (list == null) 
+            list = new ArrayList<>();                
+        list.add(lesson);        
+        weekAndList.put(day, list);                          
+    }
+    
+    public void addTeacherToday(DayOfWeek day, Teacher teacher) {
+        List<Teacher> list = weekTeachers.get(day);
+        if (list == null) 
+            list = new ArrayList<>();                
+        list.add(teacher);        
+        weekTeachers.put(day, list);  
+    }
+    
+    public int getClassLessonCount(DayOfWeek day) {
+        List<Lessons> list = weekAndList.get(day);
+        if (list == null)
+            return 0;
+        else 
+            return list.size();
     }
     
     void showWeekAndList() {
@@ -69,6 +100,14 @@ class Class {
             }
             System.out.println("");
         }
+        for (Map.Entry<DayOfWeek, List<Teacher>> entry : weekTeachers.entrySet()) {
+            System.out.print(entry.getKey() + " ");
+            for (Teacher teacher : entry.getValue()) {
+                System.out.print(teacher.getFullNameTeacher() + " ");
+            }
+            System.out.println("");
+        }
+        
     }
     
     public EnumMap<Lessons, Double> getMapLessonAndLoad() {
@@ -119,12 +158,12 @@ class Class {
         this.mainLoad += load;
     }
     
-    void showLessonsAndLoad() {
-        System.out.println("Lessons and load");
-
+    void showLessonsAndLoad() {        
         for (Map.Entry<Lessons, Double> entry : lessonAndLoad.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+            if (entry.getValue() != 0)                             
+                System.out.println(entry.getKey() + " " + entry.getValue());
         }
+        
         System.out.println("Main load " + this.mainLoad);
     }  
 }

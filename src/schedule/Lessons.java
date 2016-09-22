@@ -25,5 +25,5 @@ enum Lessons {
     ZOZH,
     SOCIAL,
     ECOLOGY,
-    VOID   
+    XXX   
 }

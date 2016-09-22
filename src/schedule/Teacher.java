@@ -30,9 +30,9 @@ class Teacher {
         this.classes = new ArrayList<>();
         //this.freeDay = null;
        
-        for (DayOfWeek w : DayOfWeek.values()) {
+        /*for (DayOfWeek w : DayOfWeek.values()) {
             weekAndList.put(w, new ArrayList<Class>());
-        }
+        }*/
         
         /*for (Lessons l : Lessons.values()) {
             lessonAndClass.put(l, new ArrayList<Class>());
@@ -68,10 +68,21 @@ class Teacher {
         return weekAndList;
     }
     
-    private void addClass(Lessons l, Class c) {
-        //List<Class> classes = lessonAndClass.get(l);        
-        classes.add(c);
-        this.lessonAndClass.put(l, classes);
+    public int getTeacherLessonCount(DayOfWeek day) {
+        List<Class> list = weekAndList.get(day);
+        if (list == null)
+            return 0;
+        else 
+            return list.size();
+    }
+    
+    private void addClass(Lessons l, Class c) {        
+        List<Class> list = lessonAndClass.get(l);        
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        list.add(c);
+        this.lessonAndClass.put(l, list);
     }
     
     public void addFreeDay(DayOfWeek day) {
@@ -88,9 +99,10 @@ class Teacher {
 
     public void addClassToday(DayOfWeek day, Class c) {        
         List<Class> list = weekAndList.get(day);
-        list.add(c);
-        //classes.add(c);
-        weekAndList.put(day, list);
+        if (list == null) 
+            list = new ArrayList<>();
+        list.add(c);        
+        weekAndList.put(day, list);        
     }
     
     void showWeekAndList() {
@@ -156,13 +168,17 @@ class Teacher {
         addClass(l, c); // связываем урок с классом
     }
             
-    void showLessonsAndLoad() {
-        System.out.println("нагрузка: ");
-
+    void showLessonsAndLoad() {        
         for (Map.Entry<Lessons, Integer> entry : lessonAndLoad.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+            if (entry.getValue() != 0)                             
+                System.out.println(entry.getKey() + " " + entry.getValue());
         }
         System.out.println("Общая нагрузка: " + this.mainLoad);
+        /*for (Map.Entry<Lessons, List<Class>> entry : lessonAndClass.entrySet()) {
+            System.out.println(entry.getKey());
+            for (Class c : entry.getValue())
+                System.out.println(c.getFullNameClass());
+        }*/
     }
     
     /*void showInfo() {

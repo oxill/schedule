@@ -19,6 +19,7 @@ public class Schedule {
         Class class4v = new Class(4, "В", 25);        
         Class class5a = new Class(5, "А", 27);
         Class class5b = new Class(5, "Б", 25);        
+        Class class5v = new Class(5, "В", 25);        
         Class class6a = new Class(6, "А", 27);
         Class class6b = new Class(6, "Б", 25);        
         Class class7a = new Class(7, "А", 27);
@@ -66,7 +67,7 @@ public class Schedule {
         Mixer.addClassessLesson(Lessons.RUSSIAN, 6, 5);
         Mixer.addClassessLesson(Lessons.RUSSIAN, 6, 6);
         Mixer.addClassessLesson(Lessons.RUSSIAN, 5, 7);
-        Mixer.addClassessLesson(Lessons.RUSSIAN, 6, 8);
+        Mixer.addClassessLesson(Lessons.RUSSIAN, 3, 8);
         Mixer.addClassessLesson(Lessons.RUSSIAN, 2, 9);
         Mixer.addClassessLesson(Lessons.RUSSIAN, 1, 10);
         Mixer.addClassessLesson(Lessons.RUSSIAN, 1, 11);
@@ -74,29 +75,28 @@ public class Schedule {
         Mixer.addClassessLesson(Lessons.LITERATURE, 3, 5);
         Mixer.addClassessLesson(Lessons.LITERATURE, 3, 6);
         Mixer.addClassessLesson(Lessons.LITERATURE, 2, 7);
-        Mixer.addClassessLesson(Lessons.LITERATURE, 4, 8);
+        Mixer.addClassessLesson(Lessons.LITERATURE, 2, 8);
         Mixer.addClassessLesson(Lessons.LITERATURE, 3, 9);
         Mixer.addClassessLesson(Lessons.LITERATURE, 3, 10);
         Mixer.addClassessLesson(Lessons.LITERATURE, 3, 11);
         
         Mixer.addClassessLesson(Lessons.HISTORY, 2, 5);
-        Mixer.addClassessLesson(Lessons.HISTORY, 4, 6);
-        Mixer.addClassessLesson(Lessons.HISTORY, 4, 7);
-        Mixer.addClassessLesson(Lessons.HISTORY, 4, 8);
+        Mixer.addClassessLesson(Lessons.HISTORY, 2, 6);
+        Mixer.addClassessLesson(Lessons.HISTORY, 2, 7);
+        Mixer.addClassessLesson(Lessons.HISTORY, 2, 8);
         Mixer.addClassessLesson(Lessons.HISTORY, 2, 9);
         Mixer.addClassessLesson(Lessons.HISTORY, 2, 10);
         Mixer.addClassessLesson(Lessons.HISTORY, 2, 11);
         
         Mixer.addClassessLesson(Lessons.SOCIAL, 1, 5);
-        Mixer.addClassessLesson(Lessons.SOCIAL, 2, 6);
-        Mixer.addClassessLesson(Lessons.SOCIAL, 2, 7);
-        Mixer.addClassessLesson(Lessons.SOCIAL, 2, 8);
+        Mixer.addClassessLesson(Lessons.SOCIAL, 1, 6);
+        Mixer.addClassessLesson(Lessons.SOCIAL, 1, 7);
+        Mixer.addClassessLesson(Lessons.SOCIAL, 1, 8);
         Mixer.addClassessLesson(Lessons.SOCIAL, 1, 9);
         Mixer.addClassessLesson(Lessons.SOCIAL, 2, 10);
         Mixer.addClassessLesson(Lessons.SOCIAL, 2, 11);
         
-        Mixer.addClassessLesson(Lessons.GEOGRAPHY, 1, 10);
-        Mixer.addClassessLesson(Lessons.GEOGRAPHY, 1, 11);
+        
         
         Mixer.addClassessLesson(Lessons.INFORMATICS, 2, 6);
         Mixer.addClassessLesson(Lessons.INFORMATICS, 2, 7);
@@ -149,7 +149,7 @@ public class Schedule {
         Mixer.addClassessLesson(Lessons.TECHNOLOGY, 2, 6);
         Mixer.addClassessLesson(Lessons.TECHNOLOGY, 2, 7);
         Mixer.addClassessLesson(Lessons.TECHNOLOGY, 1, 8);
-        //где технология в 9 классах?
+        //Mixer.addClassessLesson(Lessons.TECHNOLOGY, 1, 9);
         Mixer.addClassessLesson(Lessons.TECHNOLOGY, 1, 10);
         Mixer.addClassessLesson(Lessons.TECHNOLOGY, 1, 11);
         
@@ -158,18 +158,20 @@ public class Schedule {
         Mixer.addClassessLesson(Lessons.GEOGRAPHY, 2, 7);
         Mixer.addClassessLesson(Lessons.GEOGRAPHY, 2, 8);
         Mixer.addClassessLesson(Lessons.GEOGRAPHY, 2, 9);
+        Mixer.addClassessLesson(Lessons.GEOGRAPHY, 1, 10);
+        Mixer.addClassessLesson(Lessons.GEOGRAPHY, 1, 11);
         
         Mixer.addClassessLesson(Lessons.ART, 1, 5);
         Mixer.addClassessLesson(Lessons.ART, 1, 6);
         Mixer.addClassessLesson(Lessons.ART, 1, 7);
-        Mixer.addClassessLesson(Lessons.ART, 0.5, 8);
-        Mixer.addClassessLesson(Lessons.ART, 0.5, 9);
+        Mixer.addClassessLesson(Lessons.ART, 1, 8);//0.5
+        Mixer.addClassessLesson(Lessons.ART, 1, 9);//0.5
         
         Mixer.addClassessLesson(Lessons.MUSIK, 1, 5);
         Mixer.addClassessLesson(Lessons.MUSIK, 1, 6);
         Mixer.addClassessLesson(Lessons.MUSIK, 1, 7);
-        Mixer.addClassessLesson(Lessons.MUSIK, 0.5, 8);
-        Mixer.addClassessLesson(Lessons.MUSIK, 0.5, 9);
+        Mixer.addClassessLesson(Lessons.MUSIK, 1, 8);//0.5
+        Mixer.addClassessLesson(Lessons.MUSIK, 1, 9);//0.5
                 
         Mixer.addClassessLesson(Lessons.OBZH, 1, 8);
         Mixer.addClassessLesson(Lessons.OBZH, 1, 9);
@@ -187,7 +189,7 @@ public class Schedule {
         Mixer.addClassessLesson(Lessons.ZOZH, 1, 8);
         Mixer.addClassessLesson(Lessons.ZOZH, 1, 9);
         
-        Teacher shurupopa = new Teacher("Шурупова");
+        Teacher shurupova = new Teacher("Шурупова");
         Teacher medvedeva = new Teacher("Медведева");
         Teacher baboshkina = new Teacher("Бабошкина");
         Teacher tulumbasova = new Teacher("Тулумбасова");
@@ -215,10 +217,10 @@ public class Schedule {
         Teacher gvozdeva = new Teacher("Гвоздева");
         Teacher zvyagin = new Teacher("Звягин");
         
-        shurupopa.addLessonHardCode(Lessons.MATHEMATICS, class9a);
-        shurupopa.addLessonHardCode(Lessons.MATHEMATICS, class9v);
-        shurupopa.addLessonHardCode(Lessons.MATHEMATICS, class11a);
-        shurupopa.addLessonHardCode(Lessons.TECHNOLOGY, class6b);
+        shurupova.addLessonHardCode(Lessons.MATHEMATICS, class9a);
+        shurupova.addLessonHardCode(Lessons.MATHEMATICS, class9v);
+        shurupova.addLessonHardCode(Lessons.MATHEMATICS, class11a);
+        shurupova.addLessonHardCode(Lessons.TECHNOLOGY, class6b);
         
         medvedeva.addLessonHardCode(Lessons.MATHEMATICS, class6a);
         medvedeva.addLessonHardCode(Lessons.MATHEMATICS, class8a);
@@ -231,7 +233,7 @@ public class Schedule {
         baboshkina.addLessonHardCode(Lessons.MATHEMATICS, class5b);
         
         tulumbasova.addLessonHardCode(Lessons.MATHEMATICS, class6b);
-        tulumbasova.addLessonHardCode(Lessons.MATHEMATICS, class7b);
+        tulumbasova.addLessonHardCode(Lessons.MATHEMATICS, class8b);
         tulumbasova.addLessonHardCode(Lessons.MATHEMATICS, class10a);
         
         donec.addLessonHardCode(Lessons.RUSSIAN, class5a);
@@ -253,12 +255,9 @@ public class Schedule {
         fenina.addLessonHardCode(Lessons.LITERATURE, class8b);
         fenina.addLessonHardCode(Lessons.LITERATURE, class10a);
         
-        andryan.addLessonHardCode(Lessons.RUSSIAN, class5a);
-        andryan.addLessonHardCode(Lessons.RUSSIAN, class5b);
+        
         andryan.addLessonHardCode(Lessons.RUSSIAN, class6a);
-        andryan.addLessonHardCode(Lessons.RUSSIAN, class7b);
-        andryan.addLessonHardCode(Lessons.LITERATURE, class5a);
-        andryan.addLessonHardCode(Lessons.LITERATURE, class5b);
+        andryan.addLessonHardCode(Lessons.RUSSIAN, class7b);       
         andryan.addLessonHardCode(Lessons.LITERATURE, class6a);
         andryan.addLessonHardCode(Lessons.LITERATURE, class7b);
         
@@ -296,6 +295,8 @@ public class Schedule {
         nikishina.addLessonHardCode(Lessons.SOCIAL, class9b);
         nikishina.addLessonHardCode(Lessons.SOCIAL, class9v);
         nikishina.addLessonHardCode(Lessons.SOCIAL, class10a);
+        nikishina.addLessonHardCode(Lessons.GEOGRAPHY, class10a);
+        nikishina.addLessonHardCode(Lessons.GEOGRAPHY, class11a);
         
         ugulava.addLessonHardCode(Lessons.INFORMATICS, class6a);
         ugulava.addLessonHardCode(Lessons.INFORMATICS, class6b);
@@ -362,6 +363,8 @@ public class Schedule {
         aleksandrova.addLessonHardCode(Lessons.ZOZH, class8a);
         aleksandrova.addLessonHardCode(Lessons.ZOZH, class8b);
         
+        
+        
         mishanova.addLessonHardCode(Lessons.BIOLOGY, class5a);
         mishanova.addLessonHardCode(Lessons.BIOLOGY, class5b);
         mishanova.addLessonHardCode(Lessons.BIOLOGY, class7a);
@@ -378,7 +381,7 @@ public class Schedule {
         mishanova.addLessonHardCode(Lessons.GEOGRAPHY, class8b);
         mishanova.addLessonHardCode(Lessons.GEOGRAPHY, class9a);
         mishanova.addLessonHardCode(Lessons.GEOGRAPHY, class9b);
-        mishanova.addLessonHardCode(Lessons.GEOGRAPHY, class9v);
+        mishanova.addLessonHardCode(Lessons.GEOGRAPHY, class9v);                
         
         rogacheva.addLessonHardCode(Lessons.CHEMISTRY, class9a);
         rogacheva.addLessonHardCode(Lessons.CHEMISTRY, class9b);
@@ -436,7 +439,7 @@ public class Schedule {
         isaenko.addLessonHardCode(Lessons.OBZH, class9v);
         isaenko.addLessonHardCode(Lessons.OBZH, class10a);
         isaenko.addLessonHardCode(Lessons.OBZH, class11a);
-        isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class5a);
+        /*isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class5a);
         isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class5b);
         isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class6a);
         isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class6b);
@@ -444,8 +447,11 @@ public class Schedule {
         isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class7b);
         isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class8a);
         isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class8b);
+        isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class9a);
+        isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class9b);
+        isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class9v);
         isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class10a);
-        isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class11a);
+        isaenko.addLessonHardCode(Lessons.TECHNOLOGY, class11a);*/
         
         usacheva.addLessonHardCode(Lessons.SPORT, class6a);
         usacheva.addLessonHardCode(Lessons.SPORT, class6b);
@@ -465,7 +471,7 @@ public class Schedule {
               
    
         
-        Mixer.addTeacher(shurupopa);
+        Mixer.addTeacher(shurupova);
         Mixer.addTeacher(medvedeva);        
         Mixer.addTeacher(baboshkina);
         Mixer.addTeacher(tulumbasova);
@@ -507,17 +513,26 @@ public class Schedule {
         Mixer.createTeachersFreeDay(Lessons.MUSIK, DayOfWeek.FRIDAY);
         Mixer.createTeachersFreeDay(Lessons.OBZH, DayOfWeek.FRIDAY);
                                 
-        //Mixer.showFreeDay();
+        Mixer.showFreeDay();
         
-        //Mixer.showTeachersLessonsLoad();
-        //Mixer.showClassesLessonsLoad();            
+        Mixer.showTeachersLessonsLoad();
+        Mixer.showClassesLessonsLoad();            
         
-        
+        Mixer.showTeachersWeekLoad();
+        Mixer.showClassesWeekLoad();
         
         Mixer.createSchedule();
         System.out.println("------");
         Mixer.showTeachersWeekLoad();
         Mixer.showClassesWeekLoad();
         
+        Mixer.showTeachersLessonsLoad();
+        Mixer.showClassesLessonsLoad();            
     }
 }
+/*Исаенко Week and list
+MONDAY 0 0 11А 0 9В 6А 
+TUESDAY 0 0 0 0 9А 5А 
+WEDNESDAY 0 0 0 0 7А 8А 
+THURSDAY 0 0 0 8Б 9Б 
+SATURDAY 0 0 0 0 10А 8Б */
