@@ -158,11 +158,14 @@ class Teacher {
     
     void addLessonHardCode(Lessons l, Class c) {
         int load = 0;
-        if (this.lessonAndLoad.get(l) != null) {
+        if (this.lessonAndLoad.get(l) != null)
             load = this.lessonAndLoad.get(l);        
-        }
+        
         int prevLoad = load;
-        load += c.getlessonLoad(l);
+        /*if (l.equals(Lessons.FOREIGN_LANGUAGE))            
+            load += c.getlessonLoad(l) / 2;
+        else*/
+            load += c.getlessonLoad(l);
         this.lessonAndLoad.put(l, load); // добавляем к учителю урок + нагрузку
         this.mainLoad += load - prevLoad;
         addClass(l, c); // связываем урок с классом

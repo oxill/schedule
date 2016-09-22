@@ -111,20 +111,20 @@ public class Schedule {
         Mixer.addClassessLesson(Lessons.PHYSICS, 2, 10);
         Mixer.addClassessLesson(Lessons.PHYSICS, 2, 11);
         
-        Mixer.addClassessLesson(Lessons.ENGLISH, 4, 5);
-        Mixer.addClassessLesson(Lessons.ENGLISH, 3, 6);
-        Mixer.addClassessLesson(Lessons.ENGLISH, 3, 7);
-        Mixer.addClassessLesson(Lessons.ENGLISH, 3, 8);
-        Mixer.addClassessLesson(Lessons.ENGLISH, 3, 9);
-        Mixer.addClassessLesson(Lessons.ENGLISH, 3, 10);
-        Mixer.addClassessLesson(Lessons.ENGLISH, 3, 11);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 4, 5);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 6);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 7);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 8);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 9);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 10);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 11);
         
-        Mixer.addClassessLesson(Lessons.GERMAN, 4, 5);
-        Mixer.addClassessLesson(Lessons.GERMAN, 3, 6);
-        Mixer.addClassessLesson(Lessons.GERMAN, 3, 7);
-        Mixer.addClassessLesson(Lessons.GERMAN, 3, 8);
-        Mixer.addClassessLesson(Lessons.GERMAN, 2, 9);
-        Mixer.addClassessLesson(Lessons.GERMAN, 3, 10);
+        /*Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 4, 5);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 6);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 7);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 8);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 2, 9);
+        Mixer.addClassessLesson(Lessons.FOREIGN_LANGUAGE, 3, 10);*/
         
         Mixer.addClassessLesson(Lessons.CHEMISTRY, 2, 8);
         Mixer.addClassessLesson(Lessons.CHEMISTRY, 2, 9);
@@ -320,34 +320,35 @@ public class Schedule {
         dudina.addLessonHardCode(Lessons.PHYSICS, class10a);
         dudina.addLessonHardCode(Lessons.PHYSICS, class11a);
         
-        yakobson.addLessonHardCode(Lessons.ENGLISH, class5a);
-        yakobson.addLessonHardCode(Lessons.ENGLISH, class7a);
-        yakobson.addLessonHardCode(Lessons.ENGLISH, class7b);
-        yakobson.addLessonHardCode(Lessons.ENGLISH, class8a);
-        yakobson.addLessonHardCode(Lessons.ENGLISH, class9a);
-        yakobson.addLessonHardCode(Lessons.ENGLISH, class9v);
+        yakobson.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class5a);
+        yakobson.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class7a);
+        yakobson.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class7b);
+        yakobson.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class8a);
+        yakobson.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class9a);
+        yakobson.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class9v);
         
-        koroleva.addLessonHardCode(Lessons.ENGLISH, class5b);
-        koroleva.addLessonHardCode(Lessons.ENGLISH, class6a);
-        koroleva.addLessonHardCode(Lessons.ENGLISH, class6b);
-        koroleva.addLessonHardCode(Lessons.ENGLISH, class8b);
-        koroleva.addLessonHardCode(Lessons.ENGLISH, class9b);
-        koroleva.addLessonHardCode(Lessons.ENGLISH, class10a);
-        koroleva.addLessonHardCode(Lessons.ENGLISH, class11a);
+        koroleva.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class5b);
+        koroleva.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class6a);
+        koroleva.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class6b);
+        koroleva.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class8b);
+        koroleva.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class9b);
+        koroleva.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class10a);
+        koroleva.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class11a);
                 
-        gorobec.addLessonHardCode(Lessons.GERMAN, class7a);
-        gorobec.addLessonHardCode(Lessons.GERMAN, class7b);
-        gorobec.addLessonHardCode(Lessons.GERMAN, class8a);
-        gorobec.addLessonHardCode(Lessons.GERMAN, class8b);
-        gorobec.addLessonHardCode(Lessons.GERMAN, class9a);
-        gorobec.addLessonHardCode(Lessons.GERMAN, class9b);
-        gorobec.addLessonHardCode(Lessons.GERMAN, class9v);
-        gorobec.addLessonHardCode(Lessons.GERMAN, class10a);
+        gorobec.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class7a);
+        gorobec.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class7b);
+        gorobec.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class8a);
+        gorobec.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class8b);
+        gorobec.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class9a);
+        gorobec.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class9b);
+        gorobec.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class9v);
+        gorobec.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class10a);
+        gorobec.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class11a);
         
-        chernishova.addLessonHardCode(Lessons.GERMAN, class5a);
-        chernishova.addLessonHardCode(Lessons.GERMAN, class5b);
-        chernishova.addLessonHardCode(Lessons.GERMAN, class6a);
-        chernishova.addLessonHardCode(Lessons.GERMAN, class6b);
+        chernishova.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class5a);
+        chernishova.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class5b);
+        chernishova.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class6a);
+        chernishova.addLessonHardCode(Lessons.FOREIGN_LANGUAGE, class6b);
         
         aleksandrova.addLessonHardCode(Lessons.CHEMISTRY, class8a);
         aleksandrova.addLessonHardCode(Lessons.CHEMISTRY, class8b);
@@ -503,8 +504,8 @@ public class Schedule {
         Mixer.createTeachersFreeDay(Lessons.INFORMATICS, DayOfWeek.MONDAY);
         Mixer.createTeachersFreeDay(Lessons.BIOLOGY, DayOfWeek.TUESDAY);
         Mixer.createTeachersFreeDay(Lessons.CHEMISTRY, DayOfWeek.TUESDAY);
-        Mixer.createTeachersFreeDay(Lessons.ENGLISH, DayOfWeek.WEDNESDAY);
-        Mixer.createTeachersFreeDay(Lessons.GERMAN, DayOfWeek.WEDNESDAY);
+        Mixer.createTeachersFreeDay(Lessons.FOREIGN_LANGUAGE, DayOfWeek.WEDNESDAY);
+        Mixer.createTeachersFreeDay(Lessons.FOREIGN_LANGUAGE, DayOfWeek.WEDNESDAY);
         Mixer.createTeachersFreeDay(Lessons.HISTORY, DayOfWeek.WEDNESDAY);
         Mixer.createTeachersFreeDay(Lessons.PHYSICS, DayOfWeek.THURSDAY);
         Mixer.createTeachersFreeDay(Lessons.SPORT, DayOfWeek.THURSDAY);

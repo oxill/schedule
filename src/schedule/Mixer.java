@@ -101,6 +101,7 @@ public class Mixer {
 
     public static void createSchedule() { // цикл для составления расписания по выбору свободного учителя из всех доступных
         int i = 1;
+        start:
         while (hasMainLoad()) {
 
             System.out.println("Main loop count " + i);
@@ -119,6 +120,7 @@ public class Mixer {
                         if (classLoad > 0) {
                             //System.out.println(c.getFullNameClass() + " mainLoad " + c.getMainLoad());
                             //System.out.println(classLesson + " " + classLoad);
+                            int flag = 0;
                             for (Teacher teacher : teachers) {
 // пока делаю выход из цикла по учителям, предполагая, что на один предмет подходит один учитель, если надо выбирать между ними, но надо изменить этот цикл
                                 
@@ -133,8 +135,9 @@ public class Mixer {
                                     if (teacherLoad > 0) {
                                         //System.out.println(teacher.getFullNameTeacher() + " mainLoad " + teacher.getMainLoad());
                                         //System.out.println(teacherLesson + " " + teacherLoad);
+                                        
                                         if (teacher.hasClass(classLesson, c)) {
-                                            //System.out.println("TEACHER " + teacher.getFullNameTeacher() + " HAS A CLASS " + c.getFullNameClass());                                       
+                                            //System.out.println("TEACHER " + teacher.getFullNameTeacher() + " HAS " + c.getFullNameClass() + classLesson);
                                             //if (teacherLesson.equals(classLesson)) { // если учитель ведет такой урок
                                             int teacherLessonCount = teacher.getTeacherLessonCount(w);
                                             int classLessonCount = c.getClassLessonCount(w);
@@ -142,26 +145,57 @@ public class Mixer {
                                             //System.out.println(w.name() + teacher.getFullNameTeacher() + teacherTodaySize);
                                             // чтобы не добавлять учителю пустые уроки просто так
                                             // надо проверить, что больше ни у одного класса нет свободного урока как у учителя
-                                            if (teacherLessonCount <= classLessonCount) {// если у учителя в этот день есть свободный урок, то добавить его к учителю и классу                                                                                                
-                                                c.addLessonToday(w, classLesson);
-                                                c.addTeacherToday(w, teacher);
-                                                System.out.println("class " + c.getFullNameClass() + " " + w + " " + teacher.getFullNameTeacher() + " " + teacherLesson);
+                                            if (classLesson.equals(Lessons.FOREIGN_LANGUAGE)) {
+                                                teacher.addClassToday(w, c);
+                                                teacher.reduceMainLoad();
+                                                teacher.reduceLoadForLesson(teacherLesson);
+                                                System.out.println("teacher " + teacher.getFullNameTeacher() + " " + w + " " + c.getFullNameClass() + " " + classLesson);
+                                                                                                
+                                                if (flag == 0) {
+                                                    c.addLessonToday(w, classLesson);
+                                                    c.addTeacherToday(w, teacher);
+                                                    c.reduceMainLoad();                                                
+                                                    c.reduceLoadForLesson(classLesson);
+                                                    flag = 1;
+                                                    System.out.println("class " + c.getFullNameClass() + " " + w + " " + teacher.getFullNameTeacher() + " " + teacherLesson);
+                                                }
+                                                break;
+                                            }
+                                            if (teacherLessonCount <= classLessonCount) {// если у учителя в этот день есть свободный урок, то добавить его к учителю и классу                                                                                                                                                
                                                 while (teacherLessonCount < classLessonCount) {
                                                     teacher.addClassToday(w, new Class(0, "", 0));
                                                     teacherLessonCount++;
                                                 }
                                                 teacher.addClassToday(w, c);
-                                                System.out.println("teacher added " + w + " " + c.getFullNameClass());
-                                                c.reduceMainLoad();
                                                 teacher.reduceMainLoad();
-                                                c.reduceLoadForLesson(classLesson);
                                                 teacher.reduceLoadForLesson(teacherLesson);
+                                                System.out.println("teacher " + teacher.getFullNameTeacher() + " " + w + " " + c.getFullNameClass() + " " + classLesson);
+                                                
+                                                c.addLessonToday(w, classLesson);
+                                                c.addTeacherToday(w, teacher);
+                                                c.reduceMainLoad();                                                
+                                                c.reduceLoadForLesson(classLesson);              
+                                                /*if (flag == 0) {
+                                                    c.addLessonToday(w, classLesson);
+                                                    c.addTeacherToday(w, teacher);
+                                                    c.reduceMainLoad();                                                
+                                                    c.reduceLoadForLesson(classLesson);
+                                                    flag = 1;
+                                                    System.out.println("class " + c.getFullNameClass() + " " + w + " " + teacher.getFullNameTeacher() + " " + teacherLesson);
+                                                }
+                                                                                                
+                                                if (classLesson.equals(Lessons.FOREIGN_LANGUAGE)) // чтобы добавить ин.яз. сразу всем учителям для данного класса
+                                                    break;                                                                                                
+                                                */
                                                 continue label;
                                             }
                                         }
                                     }
                                 }
                             }
+                            /*if (flag == 1) {
+                                break start;
+                            }*/
                         }
                     }
                     c.addLessonToday(w, Lessons.XXX);
@@ -192,15 +226,3 @@ public class Mixer {
         }
     }
 }
-/*class 11А MONDAY Исаенко TECHNOLOGY
-class 8Б THURSDAY Исаенко TECHNOLOGY
-class 9А  TUESDAY Исаенко TECHNOLOGY
-class 9Б THURSDAY Исаенко TECHNOLOGY
-class 9В MONDAY Исаенко TECHNOLOGY
-class 7А WEDNESDAY Исаенко TECHNOLOGY 
-class 10А SATURDAY Исаенко TECHNOLOGY
-class 6А MONDAY Исаенко TECHNOLOGY
-class 5А TUESDAY Исаенко TECHNOLOGY
-class 8А WEDNESDAY Исаенко TECHNOLOGY
-class 8Б SATURDAY Исаенко TECHNOLOGY
-*/
